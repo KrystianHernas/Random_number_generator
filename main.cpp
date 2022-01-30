@@ -1,39 +1,35 @@
 #include <iostream>
-#include <cstdlib>
 #include <ctime>
 
 int main()
 {
-    int y, n;
+    int generated_Number, guess, limit;
+    bool logic = false;
+
+    std::cout << "Enter max number: " << std::endl;
+    std::cin >> limit;
     do {
         srand(time(NULL));
-        std::cout << "Wprowadz twoj traf: " << std::endl;
-        std::cin >> y;
-        int x = (rand() % 10 + 1);
-        if (y <= 10)
-            n = 0;
-        else
-            n = 1;
-        if (y <= 10)
-        {
-            if (x == y)
-            {
-                std::cout << "Wylosowana liczba: " << x << std::endl;
-                std::cout << "Twoja liczba: " << y << std::endl;
-                std::cout << "wow, trafiles" << std::endl;
+        std::cout << "Enter your guess: " << std::endl;
+        std::cin >> guess;
+        generated_Number = (rand() % limit);
+        if (guess <= limit){
+            if (generated_Number == guess){
+                std::cout << "Generated number: " << generated_Number << std::endl;
+                std::cout << "Your number: " << guess << std::endl;
+                std::cout << "Wow, you won" << std::endl; 
+                logic = true;
             }
-            else
-            {
-                std::cout << "Probuj dalej" << std::endl;
-                std::cout << "Wylosowana liczba: " << x << std::endl;
-                std::cout << "Twoja liczba: " << y << std::endl;
+            else{
+                std::cout << "Keep trying" << std::endl;
+                std::cout << "Generated number: " << generated_Number << std::endl;
+                std::cout << "Your number: " << guess << std::endl;
             }
         }
-        else if (y > 10)
-        {
-            std::cout << "Wybrales liczbe spoza zakresu \n";
+        else if (guess > limit){
+            std::cout << "Number out of range, enter data again \n";
         }
-    } while (n == 1);
+    } while (logic == false);
 
     return 0;
 }
